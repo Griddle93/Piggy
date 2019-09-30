@@ -53,8 +53,12 @@ class Piggy(PiggyParent):
     '''
 
     def dance(self):
-        print("I don't know how to dance. \nPlease give my programmer a zero.")
-
+        # Higher - Ordered
+        for x in range (3):
+        #self.defaultdance()
+        #self.do360()
+        #self.woah()
+        #self.dab()
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
         for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 3):
@@ -70,7 +74,22 @@ class Piggy(PiggyParent):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
 
-
+#spin from side to side
+    def defaultdance(self)
+        """Fortnite"""
+        pass 
+#full spin
+    def do360(self)
+        """Spin"""
+        pass
+#Turn left slowly then right fast
+    def woah(self)
+        """woa"""
+        pass
+#Turn left and move head left
+    def dab(self)
+        """Dab"""
+        pass
 
 
 ###########
