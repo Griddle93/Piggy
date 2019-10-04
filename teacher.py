@@ -86,10 +86,10 @@ class PiggyParent(gopigo3.GoPiGo3):
         current = self.get_heading()
         #Calculate delta
         goal = current + deg
-        if goal > 360
-        goal-= 360
+        if goal > 360:
+            goal-= 360
         elif goal < 0:
-            goal + = 360
+            goal += 360
         #call turn to deg on the delta
         self.turn_to_deg(goal)
         pass
