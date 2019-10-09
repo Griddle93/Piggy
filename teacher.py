@@ -31,14 +31,14 @@ class PiggyParent(gopigo3.GoPiGo3):
                 response = str.lower(input("Turn right, left, or am I done? (r/l/d): "))
                 if response == "r":
                     self.MIDPOINT += 25
-                    print("Midpoint: " + str(self.MIDPOINT))
-                    self.servo(self.MIDPOINT)
+                    print("Midpoint: " + str(1500))
+                    self.servo(1500)
                 elif response == "l":
                     self.MIDPOINT -= 25
-                    print("Midpoint: " + str(self.MIDPOINT))
-                    self.servo(self.MIDPOINT)
+                    print("Midpoint: " + str(1500))
+                    self.servo(1500)
                 else:
-                    print("Midpoint now saved to: " + str(self.MIDPOINT))
+                    print("Midpoint now saved to: " + str(1500))
                     break
         else:
             print('Okay, remember %d as the correct self.MIDPOINT' % self.MIDPOINT)

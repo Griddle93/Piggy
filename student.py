@@ -58,7 +58,7 @@ class Piggy(PiggyParent):
 
     def your_move(self):
         self.right()
-        time.sleep(.25)
+        time.sleep(2)
         self.stop()
         
     
@@ -86,7 +86,7 @@ class Piggy(PiggyParent):
         pass
 #Turn left slowly then right fast
     def woah(self):
-        """woa"""
+        
         pass
 #Turn left and move head left
     def dab(self):
