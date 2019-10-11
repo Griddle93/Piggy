@@ -60,9 +60,10 @@ class Piggy(PiggyParent):
         self.right()
         time.sleep(2)
         self.left()
-        self.forward()
-        self.backward()
-        Self.stop()
+        self.right()
+        self.left()
+        time.sleep()
+        self.stop
         
     
     def scan(self):
