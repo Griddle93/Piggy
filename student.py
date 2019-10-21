@@ -70,7 +70,7 @@ class Piggy(PiggyParent):
         time.sleep(2)
         
     def dab(self):
-        self.right()
+        self.right(primary=90, counter=-90)
         time.sleep(2)
         self.stop()
         time.sleep(.25)
