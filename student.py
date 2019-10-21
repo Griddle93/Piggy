@@ -71,9 +71,12 @@ class Piggy(PiggyParent):
         
     def dab(self):
         self.right()
+        time.sleep(2)
         self.stop()
+        time.sleep(.25)
         self.left()
-        self.sleep()
+        time.sleep(2)
+        self.stop()
         self.forward()
 
     def scan(self):
