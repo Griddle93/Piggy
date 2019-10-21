@@ -54,8 +54,9 @@ class Piggy(PiggyParent):
     '''
 
     def dance(self):
-       self.your_move()
-
+        self.your_move()
+        self.dab()
+    
     def your_move(self):
         self.right()
         time.sleep(2)
@@ -67,7 +68,13 @@ class Piggy(PiggyParent):
         time.sleep(2)
         self.stop()
         
-    
+    def dab(self)
+        self.right()
+        self.stop()
+        self.left()
+        self.sleep()
+        self.forward()
+
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
         for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 3):
