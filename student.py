@@ -99,21 +99,6 @@ class Piggy(PiggyParent):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
 
-#spin from side to side
-    def defaultdance(self):
-        pass 
-#full spin
-    def do360(self):
-        """Spin"""
-        pass
-#Turn left slowly then right fast
-    def woah(self):
-        
-        pass
-#Turn left and move head left
-    def dab(self):
-        """Dab"""
-        pass
 
 
 ###########
