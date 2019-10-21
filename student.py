@@ -58,6 +58,8 @@ class Piggy(PiggyParent):
         self.dab()
     
     def your_move(self):
+        print("\n--- YOUR MOVE ---\n")
+        print("\n--- YOUR MOVE ---\n")
         self.right()
         time.sleep(2)
         self.left()
@@ -70,6 +72,8 @@ class Piggy(PiggyParent):
         time.sleep(2)
         
     def dab(self):
+        print("\n--- DAB IT, BRA ---\n")
+        print("\n--- DAB IT, BRA ---\n")
         self.right(primary=90, counter=-90)
         time.sleep(2)
         self.stop()
