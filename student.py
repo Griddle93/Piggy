@@ -95,7 +95,7 @@ class Piggy(PiggyParent):
         time.sleep(.1)
         self.left(primary=90, counter=-90)
         time.sleep(.5)
-        self.stop()
+        
 
     def dab(self):
         print("\n--- DAB IT, BRA ---\n")
@@ -108,7 +108,31 @@ class Piggy(PiggyParent):
         time.sleep(2)
         self.stop()
         time.sleep(.25)
-        #self.fwd()
+        self.stop()
+        self.right()
+        time.sleep(.25)
+        self.left()
+        time.sleep(.5)
+
+
+    def treppo(self):
+        print("\n--- Treppo ---\n"))
+        print("\n--- Treppo ---\n"))
+        self.left()
+        time.sleep()
+        self.stop(.3)
+        self.fwd()
+        time.sleep()
+        self.left()
+        time.sleep()
+        self.stop(.5)
+        self.back()
+        time.sleep()
+        self.right(primary=90, counter=-90)
+
+
+
+
 
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
