@@ -55,7 +55,7 @@ class Piggy(PiggyParent):
 
     def dance(self):
         #Checking to see if objects are clear to dance
-        if not self.safety_check():
+        if not self.safe_to_dance():
             print("This aint it chief. Cannot dance")
             return
         else:
