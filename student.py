@@ -54,8 +54,26 @@ class Piggy(PiggyParent):
     '''
 
     def dance(self):
-        self.your_move()
-        self.dab()
+        #Checking to see if objects are clear to dance
+        if not self.safety_check():
+            print("This aint it chief. Cannot dance")
+        return
+    else:
+        print("Ya I got it now")
+        for x in range(3)
+            self.your_move()
+            self.dab()
+    def safe_to_dance(self):
+        #Does 360 check
+        For x in range(4):
+            for ang in range (1000, 2001, 100):
+                self.servo(ang)
+                time.sleep(.1)
+                if self.read_distance() < 250:
+                    return False
+            self.turn_by_deg(90)
+        return True 
+    
     
     def your_move(self):
         print("\n--- YOUR MOVE ---\n")
