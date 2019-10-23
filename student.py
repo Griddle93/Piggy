@@ -57,12 +57,13 @@ class Piggy(PiggyParent):
         #Checking to see if objects are clear to dance
         if not self.safety_check():
             print("This aint it chief. Cannot dance")
-        return
-    else:
-        print("Ya I got it now")
+            return
+        else:
+            print("Ya I got it now")
         for x in range(3)
             self.your_move()
             self.dab()
+            
     def safe_to_dance(self):
         #Does 360 check
         For x in range(4):
