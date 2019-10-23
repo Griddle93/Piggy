@@ -66,7 +66,7 @@ class Piggy(PiggyParent):
 
     def safe_to_dance(self):
         #Does 360 check
-        For x in range(4):
+        for x in range(4):
             for ang in range (1000, 2001, 100):
                 self.servo(ang)
                 time.sleep(.1)
@@ -80,16 +80,23 @@ class Piggy(PiggyParent):
         print("\n--- YOUR MOVE ---\n")
         print("\n--- YOUR MOVE ---\n")
         self.right()
-        time.sleep(2)
+        time.sleep(.5)
         self.left()
-        time.sleep(2)
+        time.sleep(.5)
         self.right(primary=90, counter=-90)
-        time.sleep(2)
+        time.sleep(.5)
         self.left()
-        time.sleep(2)
+        time.sleep(.5)
         self.stop()
-        time.sleep(2)
-        
+        time.sleep(.5)
+        self.right()
+        time.sleep(.5)
+        self.stop()
+        time.sleep(.1)
+        self.left(primary=90, counter=-90)
+        time.sleep(.5)
+        self.stop()
+
     def dab(self):
         print("\n--- DAB IT, BRA ---\n")
         print("\n--- DAB IT, BRA ---\n")
