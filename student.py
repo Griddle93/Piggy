@@ -116,8 +116,8 @@ class Piggy(PiggyParent):
 
 
     def treppo(self):
-        print("\n--- Treppo ---\n"))
-        print("\n--- Treppo ---\n"))
+        print("\n--- Treppo ---\n")
+        print("\n--- Treppo ---\n")
         self.left()
         time.sleep()
         self.stop(.3)
