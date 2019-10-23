@@ -60,10 +60,10 @@ class Piggy(PiggyParent):
             return
         else:
             print("Ya I got it now")
-        for x in range(3)
+        #for x in range(3)
             self.your_move()
             self.dab()
-            
+
     def safe_to_dance(self):
         #Does 360 check
         For x in range(4):
