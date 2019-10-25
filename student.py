@@ -116,19 +116,26 @@ class Piggy(PiggyParent):
 
 
     def treppo(self):
-        print("\n--- Treppo ---\n")
-        print("\n--- Treppo ---\n")
+        print("\n--- TREPPO ---\n")
+        print("\n--- TREPPO ---\n")
         self.left()
-        time.sleep()
-        self.stop(.3)
+        time.sleep(.3)
+        self.stop()
+        time.sleep(.3)
         self.fwd()
-        time.sleep()
+        time.sleep(.3)
         self.left()
-        time.sleep()
-        self.stop(.5)
+        time.sleep(.3)
+        self.stop()
         self.back()
-        time.sleep()
+        time.sleep(.5)
         self.right(primary=90, counter=-90)
+        time.sleep(.45)
+
+    def intro_to_prog_dance(self):
+        print("\n--- Intro Dance Yeet ---\n")
+        print("\n--- Intro Dance Yeet ---\n")
+        
 
 
 
