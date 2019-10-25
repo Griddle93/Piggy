@@ -63,7 +63,8 @@ class Piggy(PiggyParent):
         #for x in range(3)
             self.your_move()
             self.dab()
-
+            self.treppo()
+            
     def safe_to_dance(self):
         #Does 360 check
         for x in range(4):
