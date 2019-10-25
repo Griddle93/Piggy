@@ -64,7 +64,8 @@ class Piggy(PiggyParent):
             self.your_move()
             self.dab()
             self.treppo()
-            
+            self.intro_to_prog_dance()
+
     def safe_to_dance(self):
         #Does 360 check
         for x in range(4):
@@ -132,11 +133,31 @@ class Piggy(PiggyParent):
         time.sleep(.5)
         self.right(primary=90, counter=-90)
         time.sleep(.45)
+        self.back()
+        time.sleep(.4)
+        self.stop()
 
     def intro_to_prog_dance(self):
         print("\n--- Intro Dance Yeet ---\n")
         print("\n--- Intro Dance Yeet ---\n")
-        
+        self.right()
+        self.left()
+        time.sleep(.3)
+        self.fwd()
+        self.stop()
+        self.back()
+        time.sleep(.3)
+        self.left()
+        time.sleep(.2)
+        self.right()
+        time.sleep(.1)
+        self.stop()
+        self.fwd()
+        time.sleep(.2)
+        self.stop()
+        self.back()
+        time.sleep(.2)
+        self.stop()
 
 
 
