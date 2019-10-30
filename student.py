@@ -102,18 +102,18 @@ class Piggy(PiggyParent):
     def dab(self):
         print("\n--- DAB IT, BRA ---\n")
         print("\n--- DAB IT, BRA ---\n")
-        for x in range(2):
-            self.right(primary=90, counter=-90)
-            time.sleep(2)
-            self.stop()
-            time.sleep(.25)
-            self.left()
-            time.sleep(2)
-            self.stop()
-            time.sleep(.25)
-            self.stop()
-            self.right()
-            time.sleep(.25)
+        
+        self.right(primary=90, counter=-90)
+        time.sleep(2)
+        self.stop()
+        time.sleep(.25)
+        self.left()
+        time.sleep(2)
+        self.stop()
+        time.sleep(.25)
+        self.stop()
+        self.right()
+         time.sleep(.25)
             self.left()
             time.sleep(.5)
 
@@ -172,14 +172,32 @@ class Piggy(PiggyParent):
             self.scan_data[angle] = self.read_distance()
 
     def obstacle_count(self):
-        print("I can't count how many obstacles are around me. Please give my programmer a zero.")
+        """ Does a 360 scan and returns the number of obstacles it sees"""
+        found_something = False  #Trigger
+        trigger_distance = 250
+        count = 0
+        starting_position = self.get_heading()
+        self.right(primary=60, counter-60)
+       while self.get_heading() != starting_position
+            if self.read_distance() < trigger_distance and not found_something
+                found_something = True
+                count += 1
+            elif self.read_distance() > trigger_distance and found_something
+                found_something = False 
+        self.stop()
+        return count
+        print ("I found this many things: %d % count")
+
 
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
-
+        while self.read_distance() > 250:
+            self.fwd()
+            time.sleep(.01)
+        self.stop()
 
 
 ###########
