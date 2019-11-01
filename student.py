@@ -113,9 +113,9 @@ class Piggy(PiggyParent):
         time.sleep(.25)
         self.stop()
         self.right()
-         time.sleep(.25)
-            self.left()
-            time.sleep(.5)
+        time.sleep(.25)
+        self.left()
+        time.sleep(.5)
 
 
     def treppo(self):
