@@ -186,7 +186,7 @@ class Piggy(PiggyParent):
                 found_something = False 
         self.stop()
         return count
-        print ("I found this many things: %d % count")""
+        print ("I found this many things: %d % count")"""
 
 
     def nav(self):
