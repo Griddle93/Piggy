@@ -172,7 +172,7 @@ class Piggy(PiggyParent):
             self.scan_data[angle] = self.read_distance()
 
     def obstacle_count(self):
-        """ Does a 360 scan and returns the number of obstacles it sees"""
+        """ Does a 360 scan and returns the number of obstacles it sees
         found_something = False  #Trigger
         trigger_distance = 250
         count = 0
@@ -186,7 +186,7 @@ class Piggy(PiggyParent):
                 found_something = False 
         self.stop()
         return count
-        print ("I found this many things: %d % count")
+        print ("I found this many things: %d % count")""
 
 
     def nav(self):
