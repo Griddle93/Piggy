@@ -77,7 +77,7 @@ class Piggy(PiggyParent):
             self.turn_by_deg(90)
         return True 
     
-    
+    #starting dance to begin others
     def your_move(self):
         print("\n--- YOUR MOVE ---\n")
         print("\n--- YOUR MOVE ---\n")
@@ -98,7 +98,7 @@ class Piggy(PiggyParent):
         self.left(primary=90, counter=-90)
         time.sleep(.5)
         
-
+#Not actually dab, just improved dance from original
     def dab(self):
         print("\n--- DAB IT, BRA ---\n")
         print("\n--- DAB IT, BRA ---\n")
@@ -138,6 +138,7 @@ class Piggy(PiggyParent):
         time.sleep(.4)
         self.stop()
 
+#Was unable to get this to print before it runs
     def intro_to_prog_dance(self):
         print("\n--- Intro Dance Yeet ---\n")
         print("\n--- Intro Dance Yeet ---\n")
@@ -194,10 +195,30 @@ class Piggy(PiggyParent):
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
-        while True:
+        while True:      #Different from Mr A but still works very well
             while self.read_distance() > 250:
                 self.fwd()
             self.turn_by_deg(90)
+            self.stop()
+            self.scan()
+            #Traversal
+            left_total = 0
+            right_total = 0
+            for ang, dist in enumerate(self.scan_data):
+                if ang < self.MIDPOINT:
+                    right_total += dist
+                    right_count += 1
+                else:
+                    left_total += dist
+                    left_count += 1
+                    #Average right side
+            left_avg = left_total / left_count
+            right_avg = right_total / right_count
+            if left_avg > right_avg:
+                self.turn_by_deg(-45)
+            else:
+                self.turn_by_deg(45) 
+
 
 
 ###########
