@@ -201,7 +201,6 @@ class Piggy(PiggyParent):
                 self.fwd()
                 time.sleep(.01)
             self.stop()
-            self.ShakeHead()
             self.scan()            
             #traversal
             left_total = 0
