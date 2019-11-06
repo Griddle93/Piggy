@@ -199,7 +199,6 @@ class Piggy(PiggyParent):
             while self.read_distance() > 250:
                 self.fwd()
             self.turn_by_deg(90)
-            self.stop()
             self.scan()
             #Traversal
             left_total = 0
