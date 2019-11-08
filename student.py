@@ -62,7 +62,7 @@ class Piggy(PiggyParent):
             print("Ya I got it now")
         #for x in range(3)
             self.your_move()
-            self.dab()
+            self.dab()       #Order of dances occuring after check movement
             self.treppo()
             self.intro_to_prog_dance()
 
@@ -72,7 +72,7 @@ class Piggy(PiggyParent):
             for ang in range (1000, 2001, 100):
                 self.servo(ang)
                 time.sleep(.1)
-                if self.read_distance() < 250:
+                if self.read_distance() < 250: #Main check to see if setting is clear around the robot
                     return False
             self.turn_by_deg(90)
         return True 
@@ -109,7 +109,7 @@ class Piggy(PiggyParent):
         time.sleep(.25)
         self.left()
         time.sleep(2)
-        self.stop()
+        self.stop()     #Very sonsistent code, doing the same thing mulitple times
         time.sleep(.25)
         self.stop()
         self.right()
@@ -117,7 +117,7 @@ class Piggy(PiggyParent):
         self.left()
         time.sleep(.5)
 
-
+#No uniform to dance
     def treppo(self):
         print("\n--- TREPPO ---\n")
         print("\n--- TREPPO ---\n")
@@ -128,7 +128,7 @@ class Piggy(PiggyParent):
         self.fwd()
         time.sleep(.3)
         self.left()
-        time.sleep(.3)
+        time.sleep(.3)     #Some uniform constant movement
         self.stop()
         self.back()
         time.sleep(.5)
@@ -149,7 +149,7 @@ class Piggy(PiggyParent):
             self.fwd()
             self.stop()
             self.back()
-            time.sleep(.3)
+            time.sleep(.3)     #No uniform to this dance, just different movements
             self.left()
             time.sleep(.2)
             self.right()
@@ -165,7 +165,8 @@ class Piggy(PiggyParent):
 
 
 
-
+#Starts sweeping area around it, then begins movement
+    
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
         for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 100):
@@ -173,6 +174,8 @@ class Piggy(PiggyParent):
             self.scan_data[angle] = self.read_distance()
 
     def obstacle_count(self):
+       #Commented out so I can reference it even though it's broken
+        
         """ Does a 360 scan and returns the number of obstacles it sees
         found_something = False  #Trigger
         trigger_distance = 250
@@ -189,26 +192,25 @@ class Piggy(PiggyParent):
         return count
         print ("I found this many things: %d % count")"""
 
-
+#Gives the robot the ability to 
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
-        print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
         while True:    #Some code borrowed from MITCH
-            self.servo(self.MIDPOINT)
-            while self.read_distance() > 250:
-                self.fwd()
-                time.sleep(.01)
+            self.servo(self.MIDPOINT) #Sets servo back to midpoint
+            while self.read_distance() > 250:  #distance obstacle is seen by the robot
+                self.fwd() #Forward movement
+                time.sleep(.01) 
             self.stop()
-            self.scan()            
+            self.scan()             
             #traversal
             left_total = 0
             left_count = 0
             right_total = 0
             right_count = 0
             for ang, dist in self.scan_data.items():
-                if ang < self.MIDPOINT: 
+                if ang < self.MIDPOINT: #Averages all distances
                     right_total += dist
                     right_count += 1
                 else:
