@@ -165,7 +165,7 @@ class Piggy(PiggyParent):
 
 
 
-#Starts sweeping area around it, then begins movement
+#Starts sweeping space and area around it, then begins movement
     
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
@@ -192,7 +192,7 @@ class Piggy(PiggyParent):
         return count
         print ("I found this many things: %d % count")"""
 
-#Gives the robot the ability to 
+#Gives the robot the ability to navigate through mazes 
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("-------- [ Press CTRL + C to stop me ] --------\n")
@@ -218,7 +218,7 @@ class Piggy(PiggyParent):
                     left_count += 1
             left_avg = left_total / left_count
             right_avg = right_total / right_count
-            if left_avg > right_avg:
+            if left_avg > right_avg: #Move by 45 degrees wherever average is less
                 self.turn_by_deg(-45)
             else:
                 self.turn_by_deg(45)
