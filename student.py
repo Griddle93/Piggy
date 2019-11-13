@@ -1,33 +1,35 @@
 from teacher import PiggyParent
 import sys
 import time
-
+​
 class Piggy(PiggyParent):
-
+​
     '''
     *************
     SYSTEM SETUP
     *************
     '''
-
+​
     def __init__(self, addr=8, detect=True):
         PiggyParent.__init__(self) # run the parent constructor
-
+​
         ''' 
         MAGIC NUMBERS <-- where we hard-code our settings
         '''
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
         self.MIDPOINT = 1500  # what servo command (1000-2000) is straight forward for your bot?
-        self.SAFE_DIST = 345
-
+        self.load_defaults()
+        
+        
+​
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
         self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
         self.set_servo(self.SERVO_1, self.MIDPOINT)
         
-
+​
     def menu(self):
         """Displays menu dictionary, takes key-input and calls method"""
         ## This is a DICTIONARY, it's a list with custom index values. Python is cool.
@@ -46,180 +48,105 @@ class Piggy(PiggyParent):
         ans = str.lower(input("Your selection: "))
         # activate the item selected
         menu.get(ans, [None, self.quit])[1]()
-
+​
     '''
     ****************
     STUDENT PROJECTS
     ****************
     '''
-
+​
     def dance(self):
-        #Checking to see if objects are clear to dance
+        # check to see it's safe
         if not self.safe_to_dance():
-            print("This aint it chief. Cannot dance")
-            return
+            print("Not cool. Not going to dance")
+            return # return closes down the method
         else:
-            print("Ya I got it now")
-        #for x in range(3)
-            self.your_move()
-            self.dab()       #Order of dances occuring after check movement
-            self.treppo()
-            self.intro_to_prog_dance()
-
+            print("It's safe to dance!")
+        self.warmupPerformance() #calls warmup dance
+        self.doCircles() # calls second dance
+        self.reverseWheelieFail() # calls third dance
+        self.waive() # calls waive method/dance
+        self.wrecklessDabs() # finishes with the final performance.
+        self.smallBox() # drives a box
+​
     def safe_to_dance(self):
-        #Does 360 check
+        """ Does a 360 distance check and returns true if safe to dance"""
         for x in range(4):
-            for ang in range (1000, 2001, 100):
+            for ang in range(self.MIDPOINT-400, self.MIDPOINT+400, 100): 
                 self.servo(ang)
                 time.sleep(.1)
-                if self.read_distance() < 250: #Main check to see if setting is clear around the robot
+                if self.read_distance() < 250:
                     return False
             self.turn_by_deg(90)
-        return True 
-    
-    #starting dance to begin others
-    def your_move(self):
-        print("\n--- YOUR MOVE ---\n")
-        print("\n--- YOUR MOVE ---\n")
+        return True
+​
+​
+    def yeet_dab(self):
+        #A nice yeet dab to get it started
         self.right()
-        time.sleep(.5)
-        self.left()
-        time.sleep(.5)
-        self.right(primary=90, counter=-90)
-        time.sleep(.5)
-        self.left()
-        time.sleep(.5)
-        self.stop()
-        time.sleep(.5)
-        self.right()
-        time.sleep(.5)
-        self.stop()
-        time.sleep(.1)
-        self.left(primary=90, counter=-90)
-        time.sleep(.5)
-        
-#Not actually dab, just improved dance from original
-    def dab(self):
-        print("\n--- DAB IT, BRA ---\n")
-        print("\n--- DAB IT, BRA ---\n")
-        
-        self.right(primary=90, counter=-90)
         time.sleep(2)
         self.stop()
-        time.sleep(.25)
         self.left()
-        time.sleep(2)
-        self.stop()     #Very sonsistent code, doing the same thing mulitple times
         time.sleep(.25)
         self.stop()
         self.right()
         time.sleep(.25)
-        self.left()
-        time.sleep(.5)
-
-#No uniform to dance
-    def treppo(self):
-        print("\n--- TREPPO ---\n")
-        print("\n--- TREPPO ---\n")
-        self.left()
-        time.sleep(.3)
         self.stop()
-        time.sleep(.3)
         self.fwd()
-        time.sleep(.3)
-        self.left()
-        time.sleep(.3)     #Some uniform constant movement
+        time.sleep(2)
         self.stop()
-        self.back()
-        time.sleep(.5)
-        self.right(primary=90, counter=-90)
-        time.sleep(.45)
-        self.back()
-        time.sleep(.4)
-        self.stop()
-
-#Was unable to get this to print before it runs
-    def intro_to_prog_dance(self):
-        print("\n--- Intro Dance Yeet ---\n")
-        print("\n--- Intro Dance Yeet ---\n")
-        for x in range(2):
-            self.right()
-            self.left()
-            time.sleep(.3)
-            self.fwd()
-            self.stop()
-            self.back()
-            time.sleep(.3)     #No uniform to this dance, just different movements
-            self.left()
-            time.sleep(.2)
-            self.right()
-            time.sleep(.1)
-            self.stop()
-            self.fwd()
-            time.sleep(.2)
-            self.stop()
-            self.back()
-            time.sleep(.2)
-            self.stop()
-
-
-
-
-#Starts sweeping space and area around it, then begins movement
-    
+        self.servo(1200)
+        time.sleep(1)
+        self.servo(1700)
+        time.sleep(1)
+​
+​
+​
+​
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
-        for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 100):
+        for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 250):  #These codes allow robot to scan and sweep area before dancing
             self.servo(angle)
             self.scan_data[angle] = self.read_distance()
-
+​
     def obstacle_count(self):
-       #Commented out so I can reference it even though it's broken
-        
-        """ Does a 360 scan and returns the number of obstacles it sees
-        found_something = False  #Trigger
-        trigger_distance = 250
+        """Does a 360 scan and returns the number of obstacles it sees"""
+        found_something = False # trigger
+        trigger_distance = 350
         count = 0
-        starting_position = self.get_heading()
-        self.right(primary=60, counter-60)
-        while self.get_heading() != starting_position
-            if self.read_distance() < trigger_distance and not found_something
+        starting_position = self.get_heading() # write down starting position
+        self.right(primary=60, counter=-60)
+        while self.get_heading() != starting_position:
+            if self.read_distance() < trigger_distance and not found_something:
                 found_something = True
                 count += 1
-            elif self.read_distance() > trigger_distance and found_something
-                found_something = False 
+            elif self.read_distance() > trigger_distance and found_something:
+                found_something = False
+                print("I have a clear view. Resetting my counter")
         self.stop()
+        print("I found this many things: %d" % count)
         return count
-        print ("I found this many things: %d % count")"""
-
-
-    def quick_check(self):
-        #three quick checks
-        for ang in range(self.MIDPOINT-150, self.MIDPOINT+151, 150):
-            self.servo(ang)
-            if self.read_distance() < self.SAFE_DIST:
-                return False
-            #If it gets to the end then it didnt detect anything dangerous
-            return True 
-#Gives the robot the ability to navigate through mazes 
+​
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
-        while True:    #Some code borrowed from MITCH
-            self.servo(self.MIDPOINT) #Sets servo back to midpoint
-            while self.quick_check():  #Checking surroundings while movement is occuring
-                self.fwd() #Forward movement
-                time.sleep(.01) #move and check distances every .01 seconds
+        print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
+        while True:
+            self.servo(self.MIDPOINT)  #set servo forwardand straight
+            while self.read_distance() > 350:  
+                self.fwd()
+                time.sleep(.01)
             self.stop()
-            self.scan()             
+            self.shakeHeadInDisgust()
+            self.scan()            
             #traversal
             left_total = 0
             left_count = 0
             right_total = 0
             right_count = 0
             for ang, dist in self.scan_data.items():
-                if ang < self.MIDPOINT: #Averages all distances
+                if ang < self.MIDPOINT: 
                     right_total += dist
                     right_count += 1
                 else:
@@ -227,26 +154,125 @@ class Piggy(PiggyParent):
                     left_count += 1
             left_avg = left_total / left_count
             right_avg = right_total / right_count
-            if left_avg > right_avg: #Move by 45 degrees wherever average is less
+            if left_avg > right_avg:
                 self.turn_by_deg(-35)
             else:
                 self.turn_by_deg(35)
-
-
-
+​
+​
+    def yeet_around(self):
+        #Goes around an object if present
+        if self.read_distance() < 350:
+            self.servo(1000)
+            time.sleep(.4)
+            self.servo(2000)
+            time.sleep(.4)
+        self.servo(1500)
+​
+    def dothecircle(self):
+        #Does 2 circles repetitivley
+        self.right()
+        time.sleep(5)
+        self.stop()
+    
+    def Stopandgo(self):
+       #The robot stops abruptly after dancing
+        self.fwd()
+        time.sleep(.1)
+        self.back()
+        time.sleep(.5)
+        self.stop()
+​
+    def yeet_yeet(self):
+        #rapidly yeets around
+        for x in range(3):
+            self.servo(1000)
+            time.sleep(.2)
+            self.servo(2000)
+            time.sleep(.2)
+            self.servo(1000)
+            time.sleep(.2)
+            self.servo(2000)
+            time.sleep(.2)
+            self.servo(1000)
+            time.sleep(.2)
+            self.servo(2000)
+            time.sleep(.2)
+            self.servo(1000)
+            time.sleep(.2)
+            self.servo(2000)
+            time.sleep(.2)
+            self.stop()
+​
+    def Dabyeet(self):
+        #dab dance inspired by Treppo's robot
+        for x in range(7):
+            self.right()
+            time.sleep(.5)
+            self.servo(2000)
+            self.stop()
+            self.back()
+            time.sleep(.5)        #7 full "dabs"
+            self.stop()
+            self.left()
+            time.sleep(.5)
+            self.servo(1000)
+            self.stop()
+            self.back()
+            time.sleep(.5)
+            self.stop()
+​
+    
+    def Repeatdance(self):
+        #Very repetitive dance that is simple but longer than most
+        self.fwd()
+        time.sleep(.5)
+        self.turn_by_deg(90)
+        self.fwd()
+        time.sleep(.5)
+        self.turn_by_deg(90)
+        self.fwd()
+        time.sleep(.5)
+        self.turn_by_deg(90)
+        self.fwd()
+        time.sleep(.5)
+        self.turn_by_deg(90)
+        
+            
+    
+​
+​
+​
+​
 ###########
 ## MAIN APP
 if __name__ == "__main__":  # only run this loop if this is the main file
-
+​
     p = Piggy()
-
+​
     if sys.version_info < (3, 0):
         sys.stdout.write("Sorry, requires Python 3.x\n")
         p.quit()
-
+​
     try:
         while True:  # app loop
             p.menu()
-
+​
     except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
         p.quit()  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
