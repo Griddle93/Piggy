@@ -201,7 +201,7 @@ class Piggy(PiggyParent):
             self.servo(self.MIDPOINT) #Sets servo back to midpoint
             while self.read_distance() > 250:  #distance obstacle is seen by the robot
                 self.fwd() #Forward movement
-                time.sleep(.01) 
+                time.sleep(.01) #move and check distances every .01 seconds
             self.stop()
             self.scan()             
             #traversal
@@ -219,9 +219,9 @@ class Piggy(PiggyParent):
             left_avg = left_total / left_count
             right_avg = right_total / right_count
             if left_avg > right_avg: #Move by 45 degrees wherever average is less
-                self.turn_by_deg(-45)
+                self.turn_by_deg(-35)
             else:
-                self.turn_by_deg(45)
+                self.turn_by_deg(35)
 
 
 
