@@ -192,6 +192,15 @@ class Piggy(PiggyParent):
         return count
         print ("I found this many things: %d % count")"""
 
+
+    def quick_check(self)
+        #three quick checks
+        for ang in range(self.MIDPOINT-150, self.MIDPOINT+151, 150):
+            self.servo(ang)
+            if self.read_distance() < self.SAFE_DIST:
+                return False
+            #If it gets to the end then it didnt detect anything dangerous
+            return True 
 #Gives the robot the ability to navigate through mazes 
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
@@ -199,7 +208,7 @@ class Piggy(PiggyParent):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         while True:    #Some code borrowed from MITCH
             self.servo(self.MIDPOINT) #Sets servo back to midpoint
-            while self.read_distance() > 250:  #distance obstacle is seen by the robot
+            while self.quick_check():  #Checking surroundings while movement is occuring
                 self.fwd() #Forward movement
                 time.sleep(.01) #move and check distances every .01 seconds
             self.stop()
