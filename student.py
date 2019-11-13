@@ -19,7 +19,7 @@ class Piggy(PiggyParent):
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
         self.MIDPOINT = 1500  # what servo command (1000-2000) is straight forward for your bot?
-        
+        self.SAFE_DIST = 345
 
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
