@@ -4,16 +4,15 @@ import time
 
 
 class Piggy(PiggyParent):
-​
     '''
     *************
     SYSTEM SETUP
     *************
     '''
-​
+    
     def __init__(self, addr=8, detect=True):
         PiggyParent.__init__(self) 
-​
+        ​
         ''' 
         MAGIC NUMBERS <-- where we hard-code our settings
         '''
@@ -177,7 +176,7 @@ class Piggy(PiggyParent):
         self.stop()
     
     def Stopandgo(self):
-       #The robot stops abruptly after dancing
+    #The robot stops abruptly after dancing
         self.fwd()
         time.sleep(.1)
         self.back()
