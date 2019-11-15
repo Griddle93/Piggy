@@ -11,14 +11,14 @@ class Piggy(PiggyParent):
     '''
 ​
     def __init__(self, addr=8, detect=True):
-        PiggyParent.__init__(self) # run the parent constructor
+        PiggyParent.__init__(self) 
 ​
         ''' 
         MAGIC NUMBERS <-- where we hard-code our settings
         '''
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
-        self.MIDPOINT = 1500  # what servo command (1000-2000) is straight forward for your bot?
+        self.MIDPOINT = 1500  #This is just the way your robot will look when activated. normally between 1000-2000
         self.load_defaults()
         
         
@@ -26,15 +26,15 @@ class Piggy(PiggyParent):
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
-        self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
+        self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)  #Power motor is given and outputed
         self.set_servo(self.SERVO_1, self.MIDPOINT)
         
 ​
     def menu(self):
         """Displays menu dictionary, takes key-input and calls method"""
-        ## This is a DICTIONARY, it's a list with custom index values. Python is cool.
-        # Please feel free to change the menu and add options.
-        print("\n *** MENU ***") 
+        #Dictoinary for all terms displayed
+        
+        print("\n *** MENU ***")  #Simply prints menu
         menu = {"n": ("Navigate", self.nav),
                 "d": ("Dance", self.dance),
                 "o": ("Obstacle count", self.obstacle_count),
@@ -58,16 +58,16 @@ class Piggy(PiggyParent):
     def dance(self):
         # check to see it's safe
         if not self.safe_to_dance():
-            print("Not cool. Not going to dance")
-            return # return closes down the method
+            print("No can do cheif")
+            return   #Will not dance when something is obstructing
         else:
             print("It's safe to dance!")
-        self.warmupPerformance() #calls warmup dance
-        self.doCircles() # calls second dance
-        self.reverseWheelieFail() # calls third dance
-        self.waive() # calls waive method/dance
-        self.wrecklessDabs() # finishes with the final performance.
-        self.smallBox() # drives a box
+        self.yeet_around() #1st dance
+        self.dothecircle() #2nd dance
+        self.Stopandgo() #3rd dance
+        self.yeet_yeet() # calls waive method/dance
+        self.Dabyeet() 
+        self.Repeatdance()
 ​
     def safe_to_dance(self):
         """ Does a 360 distance check and returns true if safe to dance"""
@@ -76,9 +76,9 @@ class Piggy(PiggyParent):
                 self.servo(ang)
                 time.sleep(.1)
                 if self.read_distance() < 250:
-                    return False
+                    return False  #The robot has found something
             self.turn_by_deg(90)
-        return True
+        return True  #The robot did not find anything
 ​
 ​
     def yeet_dab(self):
@@ -111,18 +111,18 @@ class Piggy(PiggyParent):
 ​
     def obstacle_count(self):
         """Does a 360 scan and returns the number of obstacles it sees"""
-        found_something = False # trigger
-        trigger_distance = 350
+        found_something = False #When the robot finds or sees something
+        trigger_distance = 350 #The distance it scans around
         count = 0
-        starting_position = self.get_heading() # write down starting position
+        starting_position = self.get_heading() #starting position is placed with robot
         self.right(primary=60, counter=-60)
-        while self.get_heading() != starting_position:
-            if self.read_distance() < trigger_distance and not found_something:
-                found_something = True
+        while self.get_heading() != starting_position:  #With robot
+            if self.read_distance() < trigger_distance and not found_something:  #If nothing is found then it proceeds
+                found_something = True  #Means something is found
                 count += 1
             elif self.read_distance() > trigger_distance and found_something:
-                found_something = False
-                print("I have a clear view. Resetting my counter")
+                found_something = False #Means nothing is found
+                print("my vision is clear and ready to roll")
         self.stop()
         print("I found this many things: %d" % count)
         return count
@@ -138,7 +138,6 @@ class Piggy(PiggyParent):
                 self.fwd()
                 time.sleep(.01)
             self.stop()
-            self.shakeHeadInDisgust()
             self.scan()            
             #traversal
             left_total = 0
@@ -157,7 +156,7 @@ class Piggy(PiggyParent):
             if left_avg > right_avg:
                 self.turn_by_deg(-35)
             else:
-                self.turn_by_deg(35)
+                self.turn_by_deg(35) 
 ​
 ​
     def yeet_around(self):
@@ -224,7 +223,7 @@ class Piggy(PiggyParent):
 ​
     
     def Repeatdance(self):
-        #Very repetitive dance that is simple but longer than most
+        #Very repetitive dance that is simple but relatively long
         self.fwd()
         time.sleep(.5)
         self.turn_by_deg(90)
