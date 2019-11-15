@@ -11,8 +11,7 @@ class Piggy(PiggyParent):
     '''
     
     def __init__(self, addr=8, detect=True):
-        PiggyParent.__init__(self) 
-        ​
+        PiggyParent.__init__(self)
         ''' 
         MAGIC NUMBERS <-- where we hard-code our settings
         '''
@@ -22,14 +21,12 @@ class Piggy(PiggyParent):
         self.load_defaults()
         
         
-​
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
         self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)  #Power motor is given and outputed
         self.set_servo(self.SERVO_1, self.MIDPOINT)
         
-​
     def menu(self):
         """Displays menu dictionary, takes key-input and calls method"""
         #Dictoinary for all terms displayed
@@ -48,13 +45,14 @@ class Piggy(PiggyParent):
         ans = str.lower(input("Your selection: "))
         # activate the item selected
         menu.get(ans, [None, self.quit])[1]()
-​
+
+
     '''
     ****************
     STUDENT PROJECTS
     ****************
     '''
-​
+
     def dance(self):
         # check to see it's safe
         if not self.safe_to_dance():
@@ -68,7 +66,7 @@ class Piggy(PiggyParent):
         self.yeet_yeet() # calls waive method/dance
         self.Dabyeet() 
         self.Repeatdance()
-​
+
     def safe_to_dance(self):
         """ Does a 360 distance check and returns true if safe to dance"""
         for x in range(4):
@@ -79,8 +77,8 @@ class Piggy(PiggyParent):
                     return False  #The robot has found something
             self.turn_by_deg(90)
         return True  #The robot did not find anything
-​
-​
+
+
     def yeet_dab(self):
         #A nice yeet dab to get it started
         self.right()
@@ -99,16 +97,13 @@ class Piggy(PiggyParent):
         time.sleep(1)
         self.servo(1700)
         time.sleep(1)
-​
-​
-​
-​
+
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
         for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 250):  #These codes allow robot to scan and sweep area before dancing
             self.servo(angle)
             self.scan_data[angle] = self.read_distance()
-​
+
     def obstacle_count(self):
         """Does a 360 scan and returns the number of obstacles it sees"""
         found_something = False #When the robot finds or sees something
@@ -126,7 +121,7 @@ class Piggy(PiggyParent):
         self.stop()
         print("I found this many things: %d" % count)
         return count
-​
+
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("-------- [ Press CTRL + C to stop me ] --------\n")
@@ -157,9 +152,7 @@ class Piggy(PiggyParent):
                 self.turn_by_deg(-35)
             else:
                 self.turn_by_deg(35) 
-​
-​
-    
+
     def yeet_around(self):
         #Goes around an object if present
         if self.read_distance() < 350:
@@ -168,7 +161,7 @@ class Piggy(PiggyParent):
             self.servo(2000)
             time.sleep(.4)
         self.servo(1500)
-​
+
     def dothecircle(self):
         #Does 2 circles repetitivley
         self.right()
@@ -176,13 +169,13 @@ class Piggy(PiggyParent):
         self.stop()
     
     def Stopandgo(self):
-    #The robot stops abruptly after dancing
+        """The robot stops abruptly after dancing"""
         self.fwd()
         time.sleep(.1)
         self.back()
         time.sleep(.5)
         self.stop()
-​
+        
     def yeet_yeet(self):
         #rapidly yeets around
         for x in range(3):
@@ -203,7 +196,7 @@ class Piggy(PiggyParent):
             self.servo(2000)
             time.sleep(.2)
             self.stop()
-​
+            
     def Dabyeet(self):
         #dab dance inspired by Treppo's robot
         for x in range(7):
@@ -221,8 +214,7 @@ class Piggy(PiggyParent):
             self.back()
             time.sleep(.5)
             self.stop()
-​
-    
+            
     def Repeatdance(self):
         #Very repetitive dance that is simple but relatively long
         self.fwd()
@@ -238,26 +230,20 @@ class Piggy(PiggyParent):
         time.sleep(.5)
         self.turn_by_deg(90)
         
-            
-    
-​
-​
-​
-​
 ###########
 ## MAIN APP
 if __name__ == "__main__":  # only run this loop if this is the main file
-​
+    
     p = Piggy()
-​
+    
     if sys.version_info < (3, 0):
         sys.stdout.write("Sorry, requires Python 3.x\n")
         p.quit()
-​
+        
     try:
         while True:  # app loop
             p.menu()
-​
+            
     except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
         p.quit()  
 
