@@ -1,7 +1,8 @@
 from teacher import PiggyParent
 import sys
 import time
-​
+
+
 class Piggy(PiggyParent):
 ​
     '''
@@ -159,6 +160,7 @@ class Piggy(PiggyParent):
                 self.turn_by_deg(35) 
 ​
 ​
+    
     def yeet_around(self):
         #Goes around an object if present
         if self.read_distance() < 350:
