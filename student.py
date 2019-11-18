@@ -13,37 +13,37 @@ class Piggy(PiggyParent):
     def __init__(self, addr=8, detect=True):
         PiggyParent.__init__(self)
         ''' 
-        MAGIC NUMBERS <-- where we hard-code our settings
+        MAGIC NUMBERS <-- where we hard-code our settings  
         '''
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
-        self.MIDPOINT = 1500  #This is just the way your robot will look when activated. normally between 1000-2000
+        self.MIDPOINT = 1500  """This is just the way your robot will look when activated. normally between 1000-2000"""
         self.load_defaults()
         
         
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
-        self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)  #Power motor is given and outputed
+        self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)  """Power motor is given and outputed"""
         self.set_servo(self.SERVO_1, self.MIDPOINT)
         
     def menu(self):
         """Displays menu dictionary, takes key-input and calls method"""
-        #Dictoinary for all terms displayed
+        """Dictoinary for all terms displayed"""
         
-        print("\n *** MENU ***")  #Simply prints menu
+        print("\n *** MENU ***")  """Simply prints menu"""
         menu = {"n": ("Navigate", self.nav),
                 "d": ("Dance", self.dance),
                 "o": ("Obstacle count", self.obstacle_count),
                 "c": ("Calibrate", self.calibrate),
                 "q": ("Quit", self.quit)
                 }
-        # loop and print the menu...
+        """ loop and print the menu..."""
         for key in sorted(menu.keys()):
             print(key + ":" + menu[key][0])
-        # store the user's answer
+        """ store the user's answer"""
         ans = str.lower(input("Your selection: "))
-        # activate the item selected
+        """ activate the item selected"""
         menu.get(ans, [None, self.quit])[1]()
 
 
@@ -54,16 +54,16 @@ class Piggy(PiggyParent):
     '''
 
     def dance(self):
-        # check to see it's safe
+        """check to see it's safe"""
         if not self.safe_to_dance():
             print("No can do cheif")
-            return   #Will not dance when something is obstructing
+            return   """Will not dance when something is obstructing"""
         else:
             print("It's safe to dance!")
-        self.yeet_around() #1st dance
-        self.dothecircle() #2nd dance
-        self.Stopandgo() #3rd dance
-        self.yeet_yeet() # calls waive method/dance
+        self.yeet_around() """1st dance"""
+        self.dothecircle() """2nd dance"""
+        self.Stopandgo() """3rd dance"""
+        self.yeet_yeet() """calls waive method/dance"""
         self.Dabyeet() 
         self.Repeatdance()
 
@@ -74,13 +74,13 @@ class Piggy(PiggyParent):
                 self.servo(ang)
                 time.sleep(.1)
                 if self.read_distance() < 250:
-                    return False  #The robot has found something
+                    return False  """The robot has found something"""
             self.turn_by_deg(90)
-        return True  #The robot did not find anything
+        return True  """The robot did not find anything"""
 
 
     def yeet_dab(self):
-        #A nice yeet dab to get it started
+        """A nice yeet dab to get it started"""
         self.right()
         time.sleep(2)
         self.stop()
@@ -100,7 +100,7 @@ class Piggy(PiggyParent):
 
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
-        for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 250):  #These codes allow robot to scan and sweep area before dancing
+        for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 250):  #These codes allow robot to scan and sweep area before dancing"""
             self.servo(angle)
             self.scan_data[angle] = self.read_distance()
 
@@ -128,7 +128,7 @@ class Piggy(PiggyParent):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
         while True:
-            self.servo(self.MIDPOINT)  #set servo forwardand straight
+            self.servo(self.MIDPOINT)  #set servo forward and straight
             while self.read_distance() > 350:  
                 self.fwd()
                 time.sleep(.01)
