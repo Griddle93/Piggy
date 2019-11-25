@@ -217,7 +217,7 @@ class Piggy(PiggyParent):
             self.stop()
             
     def Repeatdance(self):
-        """Very repetitive dance that is simple but relatively long{"""}
+        """Very repetitive dance that is simple but relatively long"""
         self.fwd()
         time.sleep(.5)
         self.turn_by_deg(90)
