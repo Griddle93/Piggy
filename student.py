@@ -17,21 +17,22 @@ class Piggy(PiggyParent):
         '''
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
-        self.MIDPOINT = 1500  """This is just the way your robot will look when activated. normally between 1000-2000"""
+        """This is just the way your robot will look when activated. normally between 1000-2000"""
+        self.MIDPOINT = 1500 
         self.load_defaults()
         
         
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
-        self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)  """Power motor is given and outputed"""
+        self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)  # Power motor is given and outputed
         self.set_servo(self.SERVO_1, self.MIDPOINT) 
         
     def menu(self):
         """Displays menu dictionary, takes key-input and calls method"""
         """Dictoinary for all terms displayed"""
         
-        print("\n *** MENU ***")  """Simply prints menu"""
+        print("\n *** MENU ***")  # Simply prints menu
         menu = {"n": ("Navigate", self.nav),
                 "d": ("Dance", self.dance),
                 "o": ("Obstacle count", self.obstacle_count),
@@ -60,10 +61,10 @@ class Piggy(PiggyParent):
             return   """Will not dance when something is obstructing"""
         else:
             print("It's safe to dance!")
-        self.yeet_around() """1st dance"""
-        self.dothecircle() """2nd dance"""
-        self.Stopandgo() """3rd dance"""
-        self.yeet_yeet() """calls waive method/dance"""
+        self.yeet_around() #"""1st dance"""
+        self.dothecircle() #"""2nd dance"""
+        self.Stopandgo() #"""3rd dance"""
+        self.yeet_yeet() #"""calls waive method/dance"""
         self.Dabyeet() 
         self.Repeatdance()
 
@@ -74,9 +75,9 @@ class Piggy(PiggyParent):
                 self.servo(ang)
                 time.sleep(.1)
                 if self.read_distance() < 250:
-                    return False  """The robot has found something"""
+                    return False  # """The robot has found something"""
             self.turn_by_deg(90)
-        return True  """The robot did not find anything"""
+        return True  # """The robot did not find anything"""
 
 
     def yeet_dab(self):
@@ -163,7 +164,7 @@ class Piggy(PiggyParent):
         self.servo(1500)
 
     def dothecircle(self):
-        #Does 2 circles repetitivley
+        """Does 2 circles repetitivley"""
         self.right()
         time.sleep(5)
         self.stop()
@@ -177,7 +178,7 @@ class Piggy(PiggyParent):
         self.stop()
         
     def yeet_yeet(self):
-        #rapidly yeets around
+        """rapidly yeets around"""
         for x in range(3):
             self.servo(1000)
             time.sleep(.2)
