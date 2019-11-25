@@ -199,7 +199,7 @@ class Piggy(PiggyParent):
             self.stop()
             
     def Dabyeet(self):
-        #dab dance inspired by Treppo's robot
+        """dab dance inspired by Treppo's robot"""
         for x in range(7):
             self.right()
             time.sleep(.5)
@@ -217,7 +217,7 @@ class Piggy(PiggyParent):
             self.stop()
             
     def Repeatdance(self):
-        #Very repetitive dance that is simple but relatively long
+        """Very repetitive dance that is simple but relatively long{"""}
         self.fwd()
         time.sleep(.5)
         self.turn_by_deg(90)
