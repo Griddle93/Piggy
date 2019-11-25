@@ -149,9 +149,9 @@ class Piggy(PiggyParent):
             left_avg = left_total / left_count
             right_avg = right_total / right_count
             if left_avg > right_avg:
-                self.turn_by_deg(-35)
+                self.turn_by_deg(-100)
             else:
-                self.turn_by_deg(35) 
+                self.turn_by_deg(-100) 
 
     def yeet_around(self):
         #Goes around an object if present
