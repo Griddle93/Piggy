@@ -38,6 +38,7 @@ class Piggy(PiggyParent):
                 "o": ("Obstacle count", self.obstacle_count),
                 "c": ("Calibrate", self.calibrate),
                 "q": ("Quit", self.quit)
+                "h": ("Hold Position", self.hold_position),
                 }
         """ loop and print the menu..."""
         for key in sorted(menu.keys()):
@@ -231,6 +232,15 @@ class Piggy(PiggyParent):
         time.sleep(.5)
         self.turn_by_deg(90)
         
+
+
+    def hold_position(self)
+        started_at = self.get_heading()
+        while True:
+            time.sleep(.1)
+            current_angle = self.get_heading()
+            if abs(started_at - current_angle) > 20:
+                self.turn_to_deg(started_at)
 ###########
 ## MAIN APP
 if __name__ == "__main__":  # only run this loop if this is the main file
