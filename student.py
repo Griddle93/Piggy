@@ -234,7 +234,7 @@ class Piggy(PiggyParent):
         
 
 
-    def hold_position(self)
+    def hold_position(self):
         started_at = self.get_heading()
         while True:
             time.sleep(.1)
